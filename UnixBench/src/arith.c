@@ -85,8 +85,9 @@ int dumb_stuff(i)
 int i;
 {
 #ifndef arithoh
-	datum	x, y, z;
-		z = 0;
+	MY_TYPE x = 0;
+	MY_TYPE y = 0;
+	MY_TYPE z = 0;
 #endif
 		/*
 		 *     101

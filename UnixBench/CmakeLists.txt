@@ -65,23 +65,36 @@ endif()
 add_executable(arithoh       ${SRCDIR}/arith.c ${SRCDIR}/timeit.c)
 target_compile_definitions(arithoh       PRIVATE arithoh)
 
-add_executable(register      ${SRCDIR}/arith.c ${SRCDIR}/timeit.c)
-target_compile_definitions(register      PRIVATE datum="register int")
+set(DATA_TYPES "char" "short" "int" "long" "double" "float")
 
-add_executable(short         ${SRCDIR}/arith.c ${SRCDIR}/timeit.c)
-target_compile_definitions(short         PRIVATE datum=short)
+foreach(T IN LISTS DATA_TYPES)
+    # 1. Create a unique target name for each type
+    set(EXE_NAME "app_${T}")
 
-add_executable(int           ${SRCDIR}/arith.c ${SRCDIR}/timeit.c)
-target_compile_definitions(int           PRIVATE datum=int)
+    add_executable(${EXE_NAME} ${SRCDIR}/arith.c ${SRCDIR}/timeit.c)
+    target_compile_definitions(${EXE_NAME} PRIVATE MY_TYPE=${T})
+    
+    # Optional: Set the final output name to something specific
+    # set_target_properties(${EXE_NAME} PROPERTIES OUTPUT_NAME "program_${T}")
+endforeach()
 
-add_executable(long          ${SRCDIR}/arith.c ${SRCDIR}/timeit.c)
-target_compile_definitions(long          PRIVATE datum=long)
+#add_executable(register      ${SRCDIR}/arith.c ${SRCDIR}/timeit.c)
+#target_compile_definitions(register      PRIVATE MY_TYPE="register int")
 
-add_executable(float         ${SRCDIR}/arith.c ${SRCDIR}/timeit.c)
-target_compile_definitions(float         PRIVATE datum=float)
+#add_executable(short         ${SRCDIR}/arith.c ${SRCDIR}/timeit.c)
+#target_compile_definitions(short         PRIVATE datum=short)
 
-add_executable(double        ${SRCDIR}/arith.c ${SRCDIR}/timeit.c)
-target_compile_definitions(double        PRIVATE datum=double)
+#add_executable(int           ${SRCDIR}/arith.c ${SRCDIR}/timeit.c)
+#target_compile_definitions(int           PRIVATE datum=int)
+
+#add_executable(long          ${SRCDIR}/arith.c ${SRCDIR}/timeit.c)
+#target_compile_definitions(long          PRIVATE datum=long)
+
+#add_executable(float         ${SRCDIR}/arith.c ${SRCDIR}/timeit.c)
+#target_compile_definitions(float         PRIVATE datum=float)
+
+#add_executable(double        ${SRCDIR}/arith.c ${SRCDIR}/timeit.c)
+#target_compile_definitions(double        PRIVATE datum=double)
 
 # polling variants are platform-specific in the Makefile; left disabled by default.
 # To enable, uncomment and add the desired macros.

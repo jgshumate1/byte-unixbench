@@ -27,6 +27,7 @@ char SCCSid[] = "@(#) @(#)context1.c:3.3 -- 5/15/91 19:30:18";
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <signal.h>
 #include "timeit.h"
 
 unsigned long iter;

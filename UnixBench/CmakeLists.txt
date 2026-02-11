@@ -65,7 +65,7 @@ endif()
 add_executable(arithoh       ${SRCDIR}/arith.c ${SRCDIR}/timeit.c)
 target_compile_definitions(arithoh       PRIVATE arithoh)
 
-set(DATA_TYPES "char" "short" "int" "long" "double" "float")
+set(DATA_TYPES "char" "short" "int" "long" "double" "float" "register")
 
 foreach(T IN LISTS DATA_TYPES)
     # 1. Create a unique target name for each type
